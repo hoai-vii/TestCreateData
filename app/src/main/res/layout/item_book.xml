@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imvbackground"
+        android:layout_width="match_parent"
+        android:layout_height="165dp"
+        android:src="@drawable/bg_book"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"/>
+
+    <ImageView
+        android:id="@+id/imvBookVer"
+        android:layout_width="126dp"
+        android:layout_height="176dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/light_skin"
+        app:layout_constraintBottom_toBottomOf="@id/imvbackground"
+        app:layout_constraintEnd_toEndOf="@id/imvbackground"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="@id/imvbackground"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/imvbackground"
+        app:layout_constraintEnd_toEndOf="@id/imvbackground"
+        app:layout_constraintStart_toEndOf="@id/imvBookVer"
+        app:layout_constraintTop_toTopOf="@id/imvbackground"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/txtNameVer"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:text="Lão Hạc"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imvFavorite"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/icon_favorite" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/txtAuthorVer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Nam Cao"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txtPageVer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="150 trang"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imvStarVer"
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:src="@drawable/fullstar" />
+
+            <Button
+                android:id="@+id/btnRead"
+                android:layout_width="85dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="30dp"
+                android:background="@drawable/bg_btn"
+                android:text="Đọc"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
