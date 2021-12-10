@@ -40,7 +40,7 @@ public class BookAdapterVertical extends RecyclerView.Adapter<BookAdapterVertica
 
         holder.txtNameVer.setText(books.get(position).getBookName());
         holder.txtAuthorVer.setText(books.get(position).getBookAuthor());
-        holder.txtPageVer.setText(books.get(position).getBookPage());
+        holder.txtPageVer.setText(String.valueOf(books.get(position).getBookPage()));
         holder.btnRead.getContext();
         byte [] photo = books.get(position).getBookImage();
         Bitmap bitmap = BitmapFactory.decodeByteArray(photo, 0,photo.length);
@@ -60,7 +60,6 @@ public class BookAdapterVertical extends RecyclerView.Adapter<BookAdapterVertica
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             imvBookVer = itemView.findViewById(R.id.imvBookVer);
             imvStar = itemView.findViewById(R.id.imvStarVer);
             imvFavorite = itemView.findViewById(R.id.imvFavorite);

@@ -1,5 +1,6 @@
 package com.example.testcreatedata;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -11,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Environment;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -18,6 +20,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import java.io.ByteArrayOutputStream;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 public class MyDatabase extends SQLiteOpenHelper {
 
@@ -38,8 +42,9 @@ public class MyDatabase extends SQLiteOpenHelper {
     public static final String COL_BOOK_SUMMARY = "Book_Summary";
     public static final String COL_BOOK_IMAGE = "Book_Image";
 
+
     public MyDatabase(@Nullable Context context) {
-        super(context, TBL_NAME, null, DB_VERSION);
+        super(context, DB_NAME, null, DB_VERSION);
     }
 
     @Override
@@ -49,7 +54,7 @@ public class MyDatabase extends SQLiteOpenHelper {
                 COL_BOOK_PUBLISHER +  " VARCHAR(200), " + COL_BOOK_DATETIME + " VARCHAR(20), " + COL_BOOK_LOAIBIA + " VARCHAR(20), " +
                 COL_BOOK_SIZE + " VARCHAR(30), "+COL_BOOK_CATEGORY + " VARCHAR(100), " + COL_BOOK_IMAGE + " BLOB, " + COL_BOOK_SUMMARY + " VARCHAR(500)) " ;
         sqLiteDatabase.execSQL(sql);
-        createSomeDefaultBook();
+
     }
 
     @Override
@@ -68,14 +73,14 @@ public class MyDatabase extends SQLiteOpenHelper {
         return db.rawQuery(sql,null);
     }
 
-
-    public void createSomeDefaultBook(){
-        execSql("INSERT INTO "+ TBL_NAME+" VALUES(null,'Đắc nhân tâm','Dale Carnegie',320,15.000,45.000,'First News - Trí Việt','2016-03-18','Bìa cứng','14.5 x 20.5 cm','Sách mới',R.drawable.datnhantam,'Đắc nhân tâm ...'");
-
-
-        Drawable drawable = MyDatabase.this.getResources().getDrawable(R.drawable.dacnhantam);
-        Bitmap dacnhantam = drawableToBitmap(drawable);
-    }
+//    public void createSomeDefaultBook(){
+//        execSql("INSERT INTO "+ TBL_NAME+" VALUES(null,'Đắc nhân tâm','Dale Carnegie',320,15.000,45.000,'First News - Trí Việt','2016-03-18','Bìa cứng','14.5 x 20.5 cm','Sách mới',R.drawable.datnhantam,'Đắc nhân tâm ...'");
+//
+//
+//       // Drawable drawable = MyDatabase.this.getResources().getDrawable(R.drawable.dacnhantam);
+//       // Bitmap dacnhantam = drawableToBitmap(R.drawable.dacnhantam);
+//
+//    }
 
 
     public static byte[] getBitmapAsByteArray(Bitmap bitmap) {
@@ -84,6 +89,27 @@ public class MyDatabase extends SQLiteOpenHelper {
         return outputStream.toByteArray();
     }
 
+    public void insertData(String name, String author, int page, float eprice, float price, String publisher, String datetime, String LoaiBia, String size, String category, byte[] image, String summary) {
+
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COL_BOOK_NAME, name);
+        cv.put(COL_BOOK_AUTHOR, author);
+        cv.put(COL_BOOK_PAGE, page);
+        cv.put(COL_BOOK_EPRICE, eprice);
+        cv.put(COL_BOOK_PRICE, price);
+        cv.put(COL_BOOK_PUBLISHER, publisher);
+        cv.put(COL_BOOK_DATETIME, datetime);
+        cv.put(COL_BOOK_LOAIBIA, LoaiBia);
+        cv.put(COL_BOOK_SIZE, size);
+        cv.put(COL_BOOK_CATEGORY, category);
+        cv.put(COL_BOOK_IMAGE, image);
+        cv.put(COL_BOOK_SUMMARY, summary);
+
+        db.insert(TBL_NAME, null, cv);
+
+    }
+//
     public static Bitmap drawableToBitmap(Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
             return ((BitmapDrawable) drawable).getBitmap();
@@ -105,4 +131,5 @@ public class MyDatabase extends SQLiteOpenHelper {
 
         return bitmap;
     }
+
 }

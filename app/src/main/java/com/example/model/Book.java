@@ -110,7 +110,7 @@ public class Book {
         this.bookImage = bookImage;
     }
 
-    public Book(int bookID, String bookName, String bookAuthor, int bookPage, float ebookPrice, float bookPrice,String bookPublisher, String dateTime, String loaiBia, String bookSize, String bookCategory, String bookSummary,   byte[] bookImage) {
+    public Book(int bookID, String bookName, String bookAuthor, int bookPage, float ebookPrice, float bookPrice,String bookPublisher, String dateTime, String loaiBia, String bookSize, String bookCategory, byte[] bookImage, String bookSummary ) {
         this.bookName = bookName;
         this.bookAuthor = bookAuthor;
         this.bookPublisher = bookPublisher;
