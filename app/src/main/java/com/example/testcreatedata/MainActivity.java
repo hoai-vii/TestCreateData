@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,17 +19,29 @@ import android.widget.ImageView;
 import com.example.adapter.BookAdapterVertical;
 import com.example.model.Book;
 import com.example.model.BookDB;
+import com.example.model.BookItemClickListener;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BookItemClickListener {
     RecyclerView rcvMyBook;
     ArrayList<Book> books;
     BookAdapterVertical adapterVertical;
     MyDatabase db;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onBookClick(Book book, ImageView bookImageView) {
+        Intent intent=new Intent(MainActivity.this,DetailActivity.class);
+        intent.putExtra("Title",book.getBookName());
+        intent.putExtra("Summary",book.getBookSummary());
+        intent.putExtra("Image",book.getBookImage());
+        intent.putExtra("Author",book.getBookAuthor());
+        intent.putExtra("Page",book.getBookPage());
+        intent.putExtra("Category",book.getBookCategory());
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -37,12 +50,18 @@ public class MainActivity extends AppCompatActivity {
         initData();
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return null;
+    }
+
     private void linkView() {
         rcvMyBook = findViewById(R.id.rcvMyBook);
     }
 
     private void prepareDB() {
         db = new MyDatabase(this);
+
         Bitmap dacnhantam = BitmapFactory.decodeResource(getResources(),
                 R.drawable.dacnhantam);
         db.insertData("Đắc nhân tâm","Dale Carnegie",320,15000,45000,"First News - Trí Việt","2016-03-18","Bìa cứng","14.5 x 20.5 cm","Sách mới",getBitmapAsByteArray(dacnhantam),"Đắc nhân tâm ...");
@@ -53,8 +72,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void initData() {
+
+        adapterVertical = new BookAdapterVertical(this, getDataFromDB());
+        rcvMyBook.setAdapter(adapterVertical);
+        rcvMyBook.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+
+
+    }
+
+    public ArrayList<Book> getDataFromDB(){
         books = new ArrayList<>();
         Cursor cursor = db.getData("SELECT * FROM " + MyDatabase.TBL_NAME);
+        books.clear();
         while (cursor.moveToNext()){
             int id= cursor.getInt(0);
             String name = cursor.getString(1);
@@ -72,10 +101,6 @@ public class MainActivity extends AppCompatActivity {
             books.add(new Book(id,name, author, page, eprice, price, publisher, datetime, loaiBia, size, category, image, summary));
         }
         cursor.close();
-        adapterVertical = new BookAdapterVertical(this, books);
-        rcvMyBook.setAdapter(adapterVertical);
-        rcvMyBook.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-
-
+        return books;
     }
 }

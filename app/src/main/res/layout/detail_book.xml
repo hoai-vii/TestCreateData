@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imvbackgroundBook"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="68dp"
+        android:background="@drawable/bg_book"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imvPhoto"
+        android:layout_width="90dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/dacnhantam"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtNameBook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Đắc nhân tâm"
+        app:layout_constraintEnd_toStartOf="@+id/imvPhoto"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="@id/imvbackgroundBook"
+        app:layout_constraintTop_toTopOf="@id/imvbackgroundBook"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:id="@+id/txtAuthorBook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Hoài Vi"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/imvPhoto"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="@id/imvbackgroundBook"
+        app:layout_constraintTop_toBottomOf="@id/txtNameBook" />
+
+    <TextView
+        android:id="@+id/txtPageBook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="150 trang"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/imvbackgroundBook"
+        app:layout_constraintHorizontal_bias="0.386"
+        app:layout_constraintStart_toEndOf="@id/imvPhoto"
+        app:layout_constraintTop_toTopOf="@id/imvbackgroundBook" />
+
+    <TextView
+        android:id="@+id/txtCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Sách mới"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/imvbackgroundBook"
+        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintStart_toEndOf="@id/imvPhoto"
+        app:layout_constraintTop_toBottomOf="@id/txtPageBook" />
+
+    <TextView
+        android:id="@+id/txtDes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dfdjsafkjdskfjsdkljfsdkjfsdkjfsdjfdksjfksdjdfsdfsdfdsfasdfdcvcxvxcvxcxvxbcvbvc"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imvbackgroundBook"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imvPhoto"
+        app:layout_constraintVertical_bias="0.325"
+        android:padding="10dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
